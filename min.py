@@ -130,8 +130,8 @@ print(f"Minimum Price of Paid Apps: ${minPrice:.2f}")
 #Assume data is loaded and preprocessed
 data = pd.read_excel("Cleaned_GooglePlaystore.xlsx")  # Load the cleaned data
 
-#Split 'Genres' into lists and explode
-data['Genres'] = data['Genres'].str.split('; ')
+#'Genres' into lists and explode
+data['Genres'] = data['Genres'].str.split(';')
 exploded_genres = data.explode('Genres')
 
 #Count applications per genre
@@ -144,10 +144,10 @@ plt.title('Distribution of Applications Per Genre')
 plt.ylabel('')  # Remove the y-label as it's unnecessary
 plt.show()
 
-#3-2
-data = df[df['Category'].isin(['BUSINESS', 'EDUCATION'])]
+#Box plot
+filter_data = data[data['Category'].isin(['BUSINESS', 'EDUCATION'])]
 plt.figure(figsize=(8, 6))
-boxplot = data.boxplot(by='Category', column='Rating', grid=False)
+boxplot = filter_data.boxplot(by='Category', column='Rating', grid=False)
 
 plt.title('Box Plot of Ratings for Business and Education Categories')
 plt.suptitle('') 
